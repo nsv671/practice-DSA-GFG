@@ -1,0 +1,57 @@
+//{ Driver Code Starts
+//Initial Template for Java
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class Main {
+    
+    
+	public static void main (String[] args) {
+		Scanner sc=new Scanner(System.in);
+		int t=sc.nextInt();//taking testcases
+		while(t-->0){
+			int n=sc.nextInt();//input n
+			Solution ob=new Solution();
+			System.out.println(ob.getFirstSetBit(n));//calling method
+		}
+	}
+}
+
+// } Driver Code Ends
+
+
+//User function Template for Java
+
+class Solution
+{
+    //Function to find position of first set bit in the given number.
+    public static int getFirstSetBit(int n){
+    
+        /* EXCEDDED THE TIME LIMIT - 1st solution
+          because in each iteration it is doing the AND operation extra as compare to second solution
+         */ 
+        // int temp = 1;
+        // int counter =1;
+        // Your code here 10010
+        // if((n&temp)==1) return counter;
+        // while((n&temp) == 0){
+        //     counter++;
+        //     temp <<= 1;
+        //     System.out.print("temp in bit" +temp);
+        //     if((n&temp) != 0){
+        //         return counter;
+        //     }
+        // }
+        // return 0;
+        
+        couter =0;
+         while(n!=0){
+             counter++;
+             if((n&1)==1) return counter;
+             n>>=1;
+         }
+         return counter;
+    }
+}
