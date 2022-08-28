@@ -1,0 +1,61 @@
+//{ Driver Code Starts
+//Initial Template for Java
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+import java.math.BigInteger;
+
+
+// } Driver Code Ends
+//User function Template for Java
+
+class Solution{
+
+/*
+creating array of setbit count for all the number from 0 to 255
+*/
+    static int setBitCount[] = new int[256];
+    public static void init(){
+        setBitCount[0]=0;
+        // setBitCount[1]=1;
+        for(int i=0; i<256; i++){
+        //checking last bit is set or not if set the adding that to i/2th element of the array
+            setBitCount[i] = (i&1)+setBitCount[i/2];
+        }
+
+    }
+    
+    //Function to return sum of count of set bits in the integers from 1 to n.
+    public static int countSetBits(int n){
+    
+        // Your code here
+        int count =0;
+        init();
+        for(int i=0; i<=n; i++){
+        count += (setBitCount[i&0xff] + setBitCount[(i>>8)&0xff] + setBitCount[(i>>16)&0xff]+ setBitCount[(i>>24)&0xff]);
+        }
+                // System.out.println(setBitCount[3]);
+        return count;
+    }
+}
+
+//{ Driver Code Starts.
+
+// Driver code
+class Main {
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		Scanner sc=new Scanner(System.in);
+		int t=sc.nextInt();//testcases
+		int x, n;
+		while(t-->0) {
+	        n = sc.nextInt();//input n
+
+		    Solution obj = new Solution();
+
+		    System.out.println(obj.countSetBits(n));//calling countSetBits() method
+		}
+	}
+}
+
+// } Driver Code Ends
