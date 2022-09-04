@@ -1,0 +1,11 @@
+class Solution
+{
+    static long multiplicationUnderModulo(long a, long b)
+    {
+        // add your code here
+        long mode = 1000000007;
+        
+        return ((a%mode)*(b%mode))%mode;
+    }
+}
+
