@@ -1,0 +1,13 @@
+class Solution {
+    public static long sumUnderModulo(long a, long b){
+        // code here
+        // long rem1=1;
+        // long rem2=1;
+        long mode = 1000000007;
+        long rem1 = a%mode;
+        long rem2 = b%mode;
+        
+        return (rem1+rem2)%mode;
+        
+        // return (a%mode + b%mode)%mode;
+    } 
