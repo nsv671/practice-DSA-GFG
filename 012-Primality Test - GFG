@@ -1,0 +1,37 @@
+class Solution {
+    public boolean isPrime(int N) {
+      // code here
+      //SOLUTION-1 Time limit exceeded
+      
+      /*for(int i=2; i<N; i++){
+          if(N%i ==0){
+              return false;
+          }
+      }
+      return true;*/
+      
+      //optimized
+      //solution-2 divisor alwasy come in pair so we need to check till root N
+      //with in the time limit
+      
+      /*for(int i=2; i*i<=N; i++){
+          if(N%i ==0){
+              return false;
+          }
+      }
+      return true;*/
+      
+      //solution-3
+      //more optimized
+      if(N==1) return false;
+      if(N==2 || N==3) return true;
+      
+      if(N%2 == 0) return false;
+      if(N%3 == 0) return false;
+      
+      for(int i=5; i*i<=N; i++){
+          if(N%i==0 || N%(i+2)==0) return false;
+      }
+      return true;
+    }
+}
