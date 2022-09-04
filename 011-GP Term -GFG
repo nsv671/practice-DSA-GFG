@@ -1,0 +1,17 @@
+//User function Template for Java
+
+class Solution
+{
+    
+    public double termOfGP(int A,int B,int N)
+    {
+        //Your code here
+        if(N==1) return A;
+        if(N==2) return B;
+        
+        double res = A*Math.pow(B, N-1)/Math.pow(A, N-1);
+        
+        return res;
+    }
+
+}
