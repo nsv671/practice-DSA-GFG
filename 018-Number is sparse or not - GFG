@@ -1,0 +1,24 @@
+class Solution
+{
+    //Function to check if the number is sparse or not.
+    public static boolean isSparse(int n)
+    {
+        // Your code here
+        // int first = n;
+        // int second = n;
+        
+        //running the loop till no is GREATER than 0
+        while(n>0){
+            
+            //checking if first bit set or not simultaniously second bit also
+            //if both bit are set then returning false
+            //else returning true
+            if(((n&2)>>1)==1 && (n&1)==1) return false;
+            
+            //right shifting the no to 1 place
+            n>>=1;
+        }
+        return true;
+    }
+    
+}
