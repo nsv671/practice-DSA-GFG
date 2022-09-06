@@ -1,0 +1,28 @@
+class Solution{
+    
+    /*  Function to calculate the longest consecutive ones
+    *   N: given input to calculate the longest consecutive ones
+    */
+    public static int maxConsecutiveOnes(int N) {
+        
+        // Your code here
+        int max=0;
+        int temp=0;
+        
+        //Running the loop till no is greater than 0
+        while(N>0){
+            //checking if 1st bit is set or not
+            if((N&1)==1){
+              //incrementing the temp
+                temp++;
+                //if max > temp then assigning the temp value to max
+                if(max<temp) max=temp;
+            //if 1st bit is not set then setting the temp to 0;    
+            }else temp=0;
+            
+            //right shifting the no to 1 place
+            N>>=1;
+        }
+        return max;
+    }
+}
