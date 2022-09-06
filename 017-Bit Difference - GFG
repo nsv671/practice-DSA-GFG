@@ -1,0 +1,25 @@
+class Solution{
+    
+    // Function to find number of bits needed to be flipped to convert A to B
+    public static int countBitsFlip(int a, int b){
+        
+        // Your code here
+        int max = Math.max(a,b);
+        int min = Math.min(a,b);
+        int count = 0;
+        
+        //running the loop till max no is 0
+        while(max>0){
+        
+            //compare if bit is different and increasing the count if it is
+            if((max&1)!=(min&1)) count++;
+            
+            //right shifting both the no
+            max>>=1;
+            min>>=1;
+        }
+        return count;
+    }
+    
+    
+}
