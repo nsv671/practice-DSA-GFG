@@ -1,0 +1,28 @@
+class Solution{
+    
+    // Function to check if given number n is a power of two.
+    public static boolean isPowerofTwo(long n){
+        
+        // Your code here
+        //nive solution
+        
+        //checking the base cases
+        if(n==0) return false;
+        if(n==1) return true;
+        
+        //running the loop till n is greater than 1(because if it is greater then 0 then cases will
+        //fail where number is perfect square)
+        while(n>1){
+            
+            //checking if no is divisible by 2
+            // if(n%2!=0) return false;
+            if((n&1)==1) return false;
+            
+            //reducing the no by dividing it with 2
+            // n=n/2;
+            n>>=1;
+        }
+        return true;
+    }
+    
+}
