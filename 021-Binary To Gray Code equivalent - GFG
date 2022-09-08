@@ -1,0 +1,50 @@
+class Solution{
+    
+    //  Function to find the gray code of given number n
+    public static int greyConverter(int n) {
+        
+        // i will ask what is gray code
+        /*greyCode conversion steps (binary to greyCode) -
+        1 -- write  1st most significat bit (MSB)
+        2 -- do the sum in the next bit (i.e. next right bit of MSB) with out carry forword
+             store that bit in the same lotuion of the bit in different array
+             (sum result will be 0+0=0; 0+1=1; 1+0=1; 1+1=0 )
+        3 -- repeat the process
+        */
+        
+        // count total set bit (for my solution time limit is exciding)
+        
+        // Your code here
+        //my solution
+        
+        //storing array for the binary of the given number
+        int[] binary  = new int[256];
+        //initially filling it 0
+        Arrays.fill(binary,0);
+        
+        //array for the graycode
+        int[] greyCode  = new int[256];
+        
+        //getting the binay no of the given no
+        int i=255;
+        while(n>0){
+            binary[i] = n%2;
+            n/=2;
+            i--;
+        }
+        
+        //creating gray code
+        greyCode[0] = binary[0];
+        for(i=0; i<255; i++){
+            greyCode[i+1] = binary[i]^binary[i+1];
+        }
+        
+        //converting graycode to decimal
+        int res = 0;
+        for(i=255; i>=0; i--){
+            res += greyCode[i]*((int) Math.pow(2,255-i));
+        }
+        return res;
+    }
+    
+}
