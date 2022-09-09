@@ -1,0 +1,48 @@
+class Solution
+{
+    //Function to swap odd and even bits.
+    public static int swapBits(int n) 
+    {
+	    // Your code
+	    //naive solution
+      //Time limit exceeding
+	    /*int[] array = new int[256];
+	    Arrays.fill(array,0);
+	    int i=1;
+	    while(n!=0){
+	        array[256-i] = n%2;
+	        n=n/2;
+	        i++;
+	        System.out.println(array[256-i]);
+	    }
+	    
+	    int res = 0;
+	    int temp=0;
+	   // int two =1;
+	    for(int j=255; j>1; j-=2){
+            temp = array[j];
+            array[j] = array[j-1];
+            array[j-1] = temp;
+            
+            res=res+  array[j]*(int) (Math.pow(2,255-j)) +  array[j-1]* (int) (Math.pow(2,255-j-1));
+	    }
+	    return res;*/
+	    
+	    //0xAAAAAAAA means 10101010101010101010101010101010 in binary.
+        //we get all even bits of n.
+	    int evenBit = n & 0xAAAAAAAA;
+	    
+	    //0x55555555 means 01010101010101010101010101010101 in binary.
+    	//we get all odd bits of n.
+	    int oddBit  = n & 0x55555555;
+	    
+	    //right shifting 
+	    evenBit >>=1;
+	    
+	    //left shift
+	    oddBit <<=1;
+	    
+	    return(evenBit | oddBit);
+	}
+    
+}
