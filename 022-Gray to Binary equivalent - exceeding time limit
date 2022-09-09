@@ -4,7 +4,10 @@ class Solution{
     // function to convert a given Gray equivalent n to Binary equivalent.
     public static int grayToBinary(int n) {
         
+        /*
         // Your code here
+        //exceeding time limit
+        //TIME COMPLEXCITY O(1)
         int[] binary = new int[256];
         Arrays.fill(binary, 0);
         
@@ -24,8 +27,29 @@ class Solution{
             res+= binary[i]*((int) Math.pow(2,255-i));
         }
         return res;
+        */
+        
+        
+        //required O(logN)
+        //explanation
+        //here g is gray code and b is binary code
+        //g4 = b4
+
+        //g3 = g4^b3= b4^b3
+
+        //g2 = b2^g3=b2^b3^b4
+
+        //g1 = b1^b2^b3^b4
+        
+        int res =n;
+        while(n>0){
+            n>>=1;
+            res^=n;
+        }
+        
+        return res;
     }
        
 }
 
-//required O(logN)
+
