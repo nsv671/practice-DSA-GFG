@@ -45,6 +45,10 @@ class Solution{
             res += greyCode[i]*((int) Math.pow(2,255-i));
         }
         return res;
+        
+        //efficient solution
+        //TIME COMPLEXITY - THETA(1)
+        //rerutn n^(n>>1);
     }
     
 }
