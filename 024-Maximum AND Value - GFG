@@ -1,0 +1,45 @@
+class Solution{
+    
+   // Function for finding maximum AND value.
+    public static int maxAND (int arr[], int N) {
+        
+        // Your code here
+
+        //Time exceeding
+        //Naive solution
+        /*int max=0;
+        for(int i=0; i<N-1; i++){
+            for(int j = i+1; j<N; j++){
+                if(max<(arr[i]&arr[j])) max = (arr[i]&arr[j]);
+            }
+        }
+        return max;*/
+        
+        
+        //code after seeing solution
+        int res =0, temp;
+        
+        //checking if most significant bit 2 or more element is present in the given array
+        //if yes then doing the or operation with res (result) which is initally 0
+        //can taken any bit instate of 16 depends on input type
+        for(int i = 16; i>=0; i--){
+            temp = countBit(res|(1<<i), arr, N);
+            
+            
+            if(temp>=2) res|=(1<<i);
+        }
+        return res;
+    }
+    
+    
+        // checking if most significant pit present in the array element and count the no of element
+        // having most significant bit
+        public static int countBit(int pattern, int arr[], int N){
+            int count=0;
+            for(int i=0; i<N; i++){
+                if((pattern&arr[i])==pattern) count++;
+            }
+            return count;
+        }
+    
+}
