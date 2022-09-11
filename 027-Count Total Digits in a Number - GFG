@@ -1,0 +1,13 @@
+class Solution
+{
+    // complete the below function
+    public static int countDigits(int n)
+    {
+        // add your code here
+        //base case
+        if(n<=9) return 1;
+        //not if(n==0) return 0;  because it will fail for n=0
+        
+        return 1+countDigits(n/10);
+    }
+}
