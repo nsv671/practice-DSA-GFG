@@ -1,0 +1,23 @@
+class Solution
+{
+    // complete the function
+    public static int digitalRoot(int n)
+    {
+        // add your code here
+        //base case
+        if(n<10) return n;
+        
+        //finding the sumof digit
+        n = sumOfDigit(n);
+        
+        //then calling the digitalRoot again for the sum of digit
+        return digitalRoot(n);
+    }
+    
+    static int sumOfDigit(int n){
+        //base condition
+        if(n<10) return n;
+        
+        return (n%10)+sumOfDigit(n/10);
+    }
+}
