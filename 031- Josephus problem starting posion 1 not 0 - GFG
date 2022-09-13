@@ -1,0 +1,16 @@
+class Solution
+{
+   public int josephus(int n, int k)
+    {
+        //Your code here
+        //position start FROM 1
+        //since our position start from 1 to n
+        if(n==1) return 1;
+        
+        //getting the ans from recursion call and then we are converting it to the original
+        //how it is converting 
+        //
+        return (josephus(n-1,k)+k-1)%n +1;
+    }
+
+}
