@@ -1,0 +1,37 @@
+class Hanoi {
+    //RULES
+    // 1 -- ONLY ONE DISK MOVE AT A TIME
+    // 2 -- NO LARGE DISK ABOVE SMALLER DISK
+    // 3 -- ONLY TOP DISK OF A TOWER CAN BE MOVED
+
+    public long toh(int N, int from, int to, int aux) {
+        // Your code here
+        //Base case
+        //when we have 1 disk then we directly moving that to FROM  rod to TO rod
+        //return 1 which 1 move needed for this
+        if(N==1) {
+            //priting the move
+            System.out.println("move disk "+1+" from rod " + from + " to rod "+to);
+            return 1;
+        }
+        
+        // storing the no of steps in moving the ring
+        long res =0;
+        
+        //moving the 1st (N-1) disk from FROM rod to AUX rod using TO rod
+        res= toh(N-1, from, aux, to );
+        
+        //moving the Nth disk from FROM rod to TO rod
+        //printng the move
+        System.out.println("move disk "+N+" from rod " + from + " to rod "+to);
+        //ading the mov into the res variable
+        res++;
+        
+        //moving the N-1 disk from FROM rod to TO rod using FROM rod
+        //adding the step to res
+        res=res+ toh(N-1, aux, to, from);
+        
+        //returning the result
+        return res;
+    }
+}
