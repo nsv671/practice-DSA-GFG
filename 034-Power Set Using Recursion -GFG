@@ -1,0 +1,37 @@
+class LexSort
+{
+    //Function to return the lexicographically sorted power-set of the string.
+    static ArrayList<String> powerSet(String s)
+    {
+        // add your code here
+        String temp ="";
+        int length = 0;
+        ArrayList<String> arrayList = new ArrayList<String>();
+        
+        //in driver function they already sorted the string
+        // arrayList = Collections.sort(power(s, temp, length, arrayList));
+        power(s, temp, length, arrayList);
+        return arrayList;
+    }
+    
+    //helper function
+    //creating a function which create power set of the given string using recurssion
+    static ArrayList<String> power(String s, String temp, int length, ArrayList<String> arrayList){
+        
+        //base condition
+        //when length is equal to the string length which has been pass to the recursion function
+        // we are adding that to array list
+        if(length==s.length()) {
+            arrayList.add(temp);
+            return arrayList;
+        }
+        
+        //calling the function for not adding the 1 charector to the temp string variable 
+        power(s, temp, length+1, arrayList);
+        
+        //calling the function with adding the 1st 1 charecter to the temp string variable
+        power(s, temp+s.charAt(length), length+1, arrayList);
+        
+        return arrayList;
+    }
+}
