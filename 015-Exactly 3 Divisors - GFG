@@ -7,7 +7,11 @@ class Solution
         int count=0;
         for(int i=2; i*i<=N; i++){
             if(isPrime(i) ){
-                if(Math.pow(i,2)<=N) count++;
+                
+                //below condition not reqired because same this we are checking in for loop
+                //if(Math.pow(i,2)<=N) count++;
+                
+                count++;
             } 
         }
         return count;
