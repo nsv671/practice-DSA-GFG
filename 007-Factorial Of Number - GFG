@@ -3,12 +3,14 @@ class Solution {
     public long factorial(int N) {
         // Your code here
         //solution one iterative
+        // if(N==0 || N=1) return N;
         /*long res = 1;
         for(int i=1; i<=N; i++){
             res*=i;
         }
         return res;*/
         // Solution factor = new Solution();
+        
         
         //solution two recursive
         
