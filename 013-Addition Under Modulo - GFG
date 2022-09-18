@@ -9,5 +9,6 @@ class Solution {
         
         return (rem1+rem2)%mode;
         
+        //one liner solution
         // return (a%mode + b%mode)%mode;
     } 
