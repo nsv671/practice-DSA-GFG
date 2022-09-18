@@ -9,6 +9,8 @@ class Solution
         
         //return n*RecursivePower(n, p-1);
         
+        
+        //efficient method
         if(p==0) return 1;
         if(p==1) return n;
         
