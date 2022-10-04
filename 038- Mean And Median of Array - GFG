@@ -1,0 +1,33 @@
+class Solution
+{
+  //Function to find median of the array elements.  
+  public int median(int A[],int N)
+    {
+      
+       Arrays.sort(A);
+       
+       //Your code here
+       //If median is fraction then conver it to integer and return
+       int resMedian =0;
+       
+       if((N&1) == 0 ){
+           resMedian = (A[(N/2)-1] + A[N/2])/2;
+       } else{
+           resMedian = A[N/2];
+       }
+       
+       return resMedian;
+    }
+    //Function to find mean of the array elements.
+    public int mean(int A[],int N)
+    {
+       //Your code here
+       int resMean = 0;
+       for(int i =0; i<N ; i++){
+           resMean += A[i];
+       }
+       
+       return resMean/N;
+    }
+
+}
