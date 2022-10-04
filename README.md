@@ -1,3 +1,3 @@
 # practice-DSA
 
-##GeeksForGeeks DSA Question
+## GeeksForGeeks DSA Question
