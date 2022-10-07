@@ -1,0 +1,82 @@
+//Time Complexity = Θ(N)
+//Auxiliary space = Θ(d)
+
+class Solution
+{
+    //Function to rotate an array by d elements in counter-clockwise direction. 
+    static void rotateArr(int arr[], int d, int n)
+    {
+        //d might be GREATER than n
+        // in that case we are taking the remainder of d%n
+        //if d lessthan n it allways d
+        d%=n;
+        
+        //creating temporary array to store the array section which need to go to last
+       int[] tempArray = new int[d];
+       
+       //storing that
+       for(int i =0; i<d; i++){
+           tempArray[i] = arr[i];
+       }
+       
+       //shifting the arry by d
+       for(int i = d; i<n; i++ ){
+           arr[i-d] = arr[i];
+       }
+       
+       //inserinting the temp arry to the last as it is
+       for(int j=0; j<d; j++){
+           arr[n-d+j] = tempArray[j];
+       }
+       
+    }
+}
+
+
+//Time Complexity = Θ(N)
+//Auxiliary space = Θ(1)
+
+
+class Solution
+{
+    //Function to rotate an array by d elements in counter-clockwise direction. 
+    
+    // STEPS 
+    // GIVEN ARRAY --> [A,B,C,D,E,F]  RESULT ARRAY --> [D,E,F,A,B,C]
+    
+    // 1 --> REVERSE THE ARRY SECTION FROM 0 TO d-1; LET d= 3
+    // i.e --> [C,B,A,D,E,F]
+    
+    // 2 --> REVERSING THE NEXT SECTION
+    // i.e --> [C,B,A,F,E,D]
+    
+    // 3 --> REVERSING THE TOTAL ARRAY
+    // i.e --> [D,E,F,A,B,C]
+    
+    
+    static void rotateArr(int arr[], int d, int n)
+    {
+        //d might be GREATER than n
+        // in that case we are taking the remainder of d%n
+        //if d lessthan n it allways d
+        d = d%n;
+        
+        // add your code here
+        reverse(arr, 0, d-1);
+        reverse(arr, d, n-1);
+        reverse(arr, 0, n-1);
+    }
+    
+    //reversing array method
+    static void reverse(int arr[], int left, int right){
+        
+        while(left<right){
+            int temp = arr[left];
+            arr[left] = arr[right];
+            arr[right] = temp;
+            left++;
+            right--;
+        }
+        
+    }
+}
