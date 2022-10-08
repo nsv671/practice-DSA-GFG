@@ -1,0 +1,18 @@
+class Solution{
+    
+    //Function to find minimum adjacent difference in a circular array.
+    // arr[]: input array
+    // n: size of array
+    public static int minAdjDiff(int arr[], int n) {
+        
+        // Your code here
+        int temp = Math.abs(arr[n-1]-arr[0]);
+        
+        for(int i =0; i<n-1; i++){
+            if(temp>Math.abs(arr[i+1]-arr[i]))
+                temp = Math.abs(arr[i+1]-arr[i]);
+        }
+        
+        return temp;
+    }
+}
