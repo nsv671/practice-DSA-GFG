@@ -29,3 +29,29 @@ creating array of setbit count for all the number from 0 to 255
         return count;
     }
 }
+
+
+//ANOTHER SOLUTION BUT TIME EXCEDDING TIME LIMIT
+
+class Solution{
+    
+    //Function to return sum of count of set bits in the integers from 1 to n.
+    public static int countSetBits(int n){
+    
+        // Your code here
+        int count = 0;
+        
+        for(int i = 1; i<=n; i++){
+            int temp = i;
+            
+            while(temp>0){
+                count++;
+                temp&=temp-1;
+                // System.out.print("@"+count+"@ ");
+                // System.out.println(temp);
+            }
+        }
+        
+       return count; 
+    }
+}
