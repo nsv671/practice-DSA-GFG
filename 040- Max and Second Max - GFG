@@ -1,3 +1,32 @@
+//Efficient solution
+class Solution{
+    
+    // Function to find largest and second largest element in the array
+    public static ArrayList<Integer> largestAndSecondLargest(int sizeOfArray, int arr[])
+    {
+        //code here.
+        ArrayList<Integer> res = new ArrayList<Integer>(2);
+        int largest = 0, secondLargest = -1;
+        
+        for(int i=1; i<sizeOfArray; i++){
+            if(arr[largest]<arr[i]){
+                secondLargest = largest;
+                largest = i;
+            } else if(arr[largest]!=arr[i]){
+                if(secondLargest==-1 || arr[secondLargest]<arr[i]) secondLargest = i;
+            }
+        }
+        
+        res.add(arr[largest]);
+        res.add(secondLargest==-1? -1: arr[secondLargest]);
+        
+        return res;
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//less efficient then above one
 class Solution{
     
     // Function to find largest and second largest element in the array
