@@ -1,0 +1,96 @@
+//EFFICIENT SOLUTION
+//HINT
+
+class Solution{
+    //Function to find the maximum occurred integer in all ranges.
+    public static int maxOccured(int L[], int R[], int n, int maxx){
+        
+        int arr[] = new int[1000000];
+        
+        //Adding 1 at (L[i]) index and subtracting 1 at (R[i]+1)th 
+        //index in the array.
+        for(int i = 0;i<n;i++){
+            arr[L[i]] += 1;
+            arr[R[i]+1] -= 1;
+        }
+        //Initialise maximum sum as arr[0] and index as -1.
+        int msum = arr[0], ind = 0;
+        
+        //Finding the prefix sum of the array.
+        for(int i = 1;i<=maxx;i++){
+            
+            //Finding the prefix sum at every index of the array.
+            arr[i] += arr[i-1];
+            
+            //Updating maximum sum if prefix sum at current index is greater
+            //than value stored earlier as maximum sum.
+            //Storing the index with maximum prefix sum.
+            if(msum < arr[i]){
+                msum = arr[i];
+                ind = i;
+            }
+        }
+        
+        //returning the index with maximum prefix sum which is maximum
+        //occuring element in the array.
+        return ind;
+    }
+    
+}
+
+
+//MY SOLUTION
+//LITTLE LESS EFFICIENT 
+
+class Solution{
+    //Function to find the maximum occurred integer in all ranges.
+    public static int maxOccured(int L[], int R[], int n, int maxx){
+        
+        // NOT REQUIRED SCIENCE maxx IS GIVEN (WHICH IS MAXIMUM OF L[] AND R[]) 
+        // int max = maxInArray(R);
+        
+        //CREATING ARRAY OF SIZE maxx+1 FOR TRAKING OF FREQUENCY
+        // int frequencyArray[] = new int[max+1];
+        int frequencyArray[] = new int[maxx+1];
+        Arrays.fill(frequencyArray, 0);
+        
+        //LENGTH OF THE ARRAY
+        int l = L.length;
+        
+        //INCREASING THE FREQUENCY OF NUMBER FOR EACH SET
+        for(int i =0; i<l; i++){
+            while(L[i]<=R[i]){
+            
+                //FREQUENCY INCREASE
+                frequencyArray[L[i]]++;
+                L[i]++;
+            }
+        }
+        
+        //FINDING AND RETURING THE MAXIMUM FREQUENCY NUMBER
+        return maxInArrayElementIndex(frequencyArray);
+    }
+    
+    // static int maxInArray(int arr[]){
+    //     int n = arr.length;
+    //     int max = arr[0];
+    //     for(int i = 1; i<n; i++){
+    //         if(max<arr[i])
+    //             max = arr[i];
+    //     }
+    //     return max;
+    // }
+    
+    
+    //CALCULATING THE MAXIMUM FREQUENCY NUMBER FROM FREQUENCY ARRAY 
+    static int maxInArrayElementIndex(int arr[]){
+        int n = arr.length;
+        int max = 0;
+        for(int i = 1; i<n; i++){
+            if(arr[max]<arr[i])
+                max = i;
+        }
+        return max;
+    }
+    
+}
