@@ -1,0 +1,27 @@
+class Solution{
+    
+    // temp: input array
+    // n: size of array
+    //Function to rearrange  the array elements alternately.
+    public static void rearrange(long arr[], int n){
+        
+        // Your code here
+        int min_indx = 0, max_indx=n-1;
+        long max_ele = arr[n-1]+1;
+        
+        for(int i=0; i<n; i++){
+            if(i%2==0){
+                arr[i] += (arr[max_indx]%max_ele)*max_ele;
+                max_indx--;
+            } else{
+                arr[i] += (arr[min_indx]%max_ele)*max_ele;
+                min_indx++;
+            }
+        }
+        
+        for(int i=0; i<n; i++){
+            arr[i] /= max_ele;
+        }
+    }
+    
+}
