@@ -1,0 +1,65 @@
+TIME COMPLEXITY O(n) AND AUXILARY SPACE O(1)
+
+class Solution{    
+    
+    // arr[]: input array
+    // num: size of array
+    // Function to check if array is sorted and rotated
+    public static boolean checkRotatedAndSorted(int arr[], int num){
+        
+        // Your code here
+        
+        // if(num==1) return false;
+        // if(num==2) return true;
+        
+        return increasingOrder(arr, num) || decreasingOrder(arr, num);
+    }
+    
+    
+    //checking for increasing order array and rotation
+    //then only returning true
+    static boolean increasingOrder(int arr[], int num){
+        int i=0;
+        
+        //We use a loop to check whether elements are in increasing order and 
+	    //stop at position where we find a smaller number than previous one.
+        while(i<num-1 && arr[i]<arr[i+1])
+            i++;
+        
+        //If we reach the end of the array, we return false.
+        if(i== num-1) return false;
+        
+        i++;
+        //Now we check whether all remaining elements are in increasing order.
+        while(i<num-1 && arr[i]<arr[i+1]) i++;
+        
+        //If we reach the end and the last element is larger than or equal to 
+        //first element we return true else we return false.
+        if(i==num-1 && arr[0]>arr[num-1]) return true;
+        else return false;
+    }
+    
+    //Function to check if array is sorted in decreasing order and rotated.
+    static boolean decreasingOrder(int arr[], int num){
+        int i=0;
+        
+        //We use a loop to check whether elements are in decreasing order and 
+        //stop at position where we find a smaller number than next one.
+        while(i<num-1 && arr[i]>arr[i+1])
+            i++;
+        
+        //If we reach the end of the array, we return false.
+        if(i== num-1) return false;
+        
+        i++;
+        
+        //Now we check whether all remaining elements are in decreasing order.
+        while(i<num-1 && arr[i]>arr[i+1]) i++;
+        
+        //If we reach the end and the last element is larger than or equal to 
+        //first element we return true else we return false.
+        if(i==num-1 && arr[0]<arr[num-1]) return true;
+        else return false;
+    }
+    
+}
