@@ -1,0 +1,49 @@
+//TIME COMPLEXITY O(n)
+//
+
+class Solution{
+
+    // arr: input array
+    // n: size of array
+    //Function to find the sum of contiguous subarray with maximum sum.
+    long maxSubarraySum(int arr[], int n){
+        
+        // Your code here
+        long tempMax=0, max=Integer.MIN_VALUE;
+        for(int i=0; i<n; i++){
+            tempMax+=arr[i];
+            if(tempMax>max) max =tempMax;
+            if(tempMax<0) tempMax=0;
+        }
+            
+        return max;
+    }
+    
+}
+
+
+//NAIVE SOLUTION
+//TIME COMPLEXITY O(n^2)
+
+class Solution{
+
+    // arr: input array
+    // n: size of array
+    //Function to find the sum of contiguous subarray with maximum sum.
+    long maxSubarraySum(int arr[], int n){
+        
+        Your code here
+        long max =arr[0];
+        for(int i=0; i<n; i++){
+            long temp=0;
+            
+            for(int j=i; j<n; j++){
+                temp+=arr[j];
+                max=Math.max(max, temp);
+            }
+            
+        }
+    }
+    
+}
+
