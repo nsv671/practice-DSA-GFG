@@ -1,0 +1,23 @@
+class Solution
+{
+    static int betBalance(String result)
+    {
+        // code here
+        int sum = 4;
+        int bet = 1;
+        int size = result.length();
+        for(int i=0; i<size; i++){
+            if(sum<=0 || sum<bet) return -1;
+            if(result.charAt(i)=='L') {
+                sum-=bet;
+                bet*=2;
+                continue;
+            }
+            if(result.charAt(i)=='W'){
+                sum+=bet;
+                bet=1;
+            }
+        }
+        return sum;
+    }
+}
