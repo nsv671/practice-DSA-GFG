@@ -1,0 +1,19 @@
+class Solution {
+    static Long numGame(Long n) {
+        // code here
+        if(n<=2) return n;
+        long mod = 1000000007;
+        Long lcm =(long) 2;
+        for(Long i=(long)3; i<=n; i++){
+            //LCM = A*B/(HCF of A and B)
+            lcm = ((lcm*i)/GCD(lcm,i))%mod;
+        }
+        return lcm;
+    }
+    
+    //GCD or HCF
+    static Long GCD(Long a, Long b){
+        if(b==0) return a;
+        return GCD(b, a%b);
+    }
+};
