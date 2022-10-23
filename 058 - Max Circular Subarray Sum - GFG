@@ -1,0 +1,65 @@
+class Solution{
+
+    // a: input array
+    // n: size of array
+    //Function to find maximum circular subarray sum.
+    static int circularSubarraySum(int a[], int n) {
+        
+        // Your code here
+        return Integer.max(kadane(a,n), reverseKadane(a,n));
+    }
+    
+    static int kadane(int a[], int n){
+        int res=Integer.MIN_VALUE;
+        int temp = 0;
+        
+        //Checking if all numbers are -ve then we are finding the max of then and returning that
+        int positiveElementCount =0;
+        int minNegativeNumber=Integer.MIN_VALUE;
+        for(int i=0; i<n; i++){
+            minNegativeNumber = Math.max(minNegativeNumber, a[i]);
+            if(a[i]>=0) positiveElementCount++;
+        }
+        
+        if(positiveElementCount==0) return minNegativeNumber;
+        
+        for(int i=0; i<n; i++){
+            temp+=a[i];
+            res = Math.max(res, temp);
+            if(temp<0) temp=0;
+        }
+
+        return res;
+    }
+    
+    static int reverseKadane(int a[], int n){
+        
+        //Checking if all numbers are -ve then we are finding the max of then and returning that
+        int positiveElementCount =0;
+        int minNegativeNumber=Integer.MIN_VALUE;
+        for(int i=0; i<n; i++){
+            minNegativeNumber = Math.max(minNegativeNumber, a[i]);
+            if(a[i]>=0) positiveElementCount++;
+        }
+        
+        if(positiveElementCount==0) return minNegativeNumber;
+        
+        //finding maximum in circular sub array
+        int sum =0;
+        //finding total sum of all element of the array 
+        for(int i=0; i<n; i++){
+            sum+=a[i];
+        }
+        
+        //inverting the arry element i.e +ve to -ve and -ve to +ve
+        for(int i=0; i<n; i++){
+               a[i] = -a[i];
+        }
+        
+        //finding the maximum sum of circular array
+        int maxCircular = sum+ kadane(a,n);
+        
+        return maxCircular;
+    }
+    
+}
