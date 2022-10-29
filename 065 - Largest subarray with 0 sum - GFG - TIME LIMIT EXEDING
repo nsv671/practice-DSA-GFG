@@ -1,0 +1,20 @@
+// TIME COMPLEXITY O(n) and AUXILIARY SPACE O(1)
+class GfG
+{
+    int maxLen(int arr[], int n)
+    {
+        // Your code here
+        int max =0;
+        for(int i=0; i<n; i++){
+            int tempSum=0;
+            int height=0;
+            for(int j=i; j<n; j++){
+                tempSum+=arr[j];
+                height++;
+                if(tempSum==0)
+                    max = Math.max(max, height);
+            }
+        }
+        return max;
+    }
+}
