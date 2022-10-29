@@ -1,3 +1,30 @@
+//without sorting
+class Solution {
+    int MissingNumber(int array[], int n) {
+        // Your Code Here
+        int sumOfFirst_N_number = (n*(n+1))/2;
+        int sum =0;
+        
+        for(int i=0; i<n-1; i++){
+            sum += array[i];
+        }
+        
+        if(sum == sumOfFirst_N_number)
+            return n;
+            
+        return sumOfFirst_N_number-sum;
+        
+        // int i, total;
+        // total = (n + 1) * (n) / 2;
+        // for (i = 0; i < n-1; i++)
+        //     total -= array[i];
+        // return total;
+
+    }
+}
+
+
+//with sorting method
 class Solution {
     int MissingNumber(int array[], int n) {
         // Your Code Here
