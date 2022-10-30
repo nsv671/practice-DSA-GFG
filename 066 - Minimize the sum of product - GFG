@@ -1,0 +1,21 @@
+//The idea is to multiply minimum element of one array to maximum element of another array. Algorithm to solve this problem:
+
+//Sort both the arrays A and B.
+//Traverse the array and for each element, multiply A[i] and B[n – i – 1] and add to the total.
+
+class Solution {
+
+    public long minValue(long a[], long b[], long n) 
+    {
+        // Your code goes here
+        long res = 0;
+        Arrays.sort(a);
+        Arrays.sort(b);
+        int size = (int) n;
+        
+        for(int i=0; i<size; i++){
+            res+=a[i]*b[size-1-i];
+        }
+        return res;
+    }
+}
