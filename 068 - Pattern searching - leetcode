@@ -23,3 +23,24 @@ class Solution {
     }
 
 }
+
+//Brut force solution
+class Solution {
+    public static boolean searchPattern(String str, String pat) {
+        // code here
+        int strLength = str.length();
+        int patLength = pat.length();
+        
+        for(int i=0; i<strLength-patLength ;i++){
+            if(pat.equals(str.substring(i, i+patLength)))
+                return true;
+        }
+        
+        //for case like HQ find Q, ABCDEF find DEF
+        //aove lope not give the solution
+        if(pat.equals(str.substring(strLength-patLength, strLength))){
+            return true;
+        }
+        return false;
+    }
+}
