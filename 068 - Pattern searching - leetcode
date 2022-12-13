@@ -1,0 +1,25 @@
+//my solution
+
+
+class Solution {
+    public static boolean searchPattern(String str, String pat) {
+        // code here
+        return str.contains(pat);
+    }
+}
+        
+
+//from disscussion
+class Solution {
+
+    public static boolean searchPattern(String str, String pat) {
+
+        // code here
+
+        boolean ans = str.indexOf(pat) == -1 ? false : true;
+
+        return ans;
+
+    }
+
+}
