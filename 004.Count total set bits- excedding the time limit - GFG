@@ -55,3 +55,36 @@ class Solution{
        return count; 
     }
 }
+
+
+//time complecity Log(n)
+class Solution{
+    
+    //Function to return sum of count of set bits in the integers from 1 to n.
+    public static int countSetBits(int n){
+    
+        // Your code here
+        //Ignoring 0 as all the bits are unset. 
+        n+=1;
+        int count=0;
+        
+        //Counting set bits from 1 to n.
+        for(int i =2; i/2<n ; i = i*2){
+            //Total count of pairs of 0s and 1s.
+            int setBitGroup = n/i;
+            
+            //quotient gives the complete count of pairs of 1s.
+            //Multiplying it with the (current power of 2)/2 will give
+            //the count of 1s in the current bit.
+            count += (setBitGroup*i/2);
+            
+            int reminder = n%i;
+            
+            //If the count of pairs is odd then we add the remaining 1s 
+            //which could not be grouped together. 
+            if(reminder > i/2)
+             count+= reminder - i/2;
+        }
+        return count;
+    }
+}
