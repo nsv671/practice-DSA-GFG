@@ -1,0 +1,167 @@
+//With extra M+N extra space
+
+class Solution
+{
+    //Function to merge the arrays.
+    public static void merge(long arr1[], long arr2[], int n, int m) 
+    {
+        // code here 
+        long[] temp = new long[n+m];
+        int i =0, j=0, index =0;
+        while(i<n && j<m){
+            if(arr1[i]>arr2[j]){
+                temp[index] = arr2[j];
+                index++;
+                j++;
+            } else{
+                temp[index] = arr1[i];
+                index++;
+                i++;
+            }
+        }
+        
+        while(i<n){
+            temp[index] = arr1[i];
+            index++;
+            i++;
+        }
+        
+        while(j<m){
+            temp[index] = arr2[j];
+            index++;
+            j++;
+        }
+        
+        for(int p=0; p<n ;p++)
+            arr1[p] = temp[p];
+        
+        for(int p=0; p<m; p++)
+            arr2[p] = temp[n+p];
+    }
+}
+
+//with O(1) auxilirery space
+//Time limit exceeding
+class Solution
+{
+    //Function to merge the arrays.
+    public static void merge(long arr1[], long arr2[], int n, int m) 
+    {
+        // code here 
+        int i =0, j=0;
+        
+        while(i<n){
+            if(arr1[i]>arr2[j]){
+                long temp = arr1[i];
+                arr1[i] = arr2[j];
+                arr2[j] = temp;
+                
+                i++;
+
+                //Sorting the 2nd array
+                //Arrays.sort(arr2);
+                for(int k =0; k<m-1; k++){
+                    if(arr2[k]<arr2[k+1])
+                        break;
+                    else{
+                        long temp2 = arr2[k];
+                        arr2[k] = arr2[k+1];
+                        arr2[k+1] = temp2;
+                    }
+                }
+            }else{
+                i++;
+            }
+        }
+    }
+}
+
+
+//with O(1) auxilirery space
+//Time limit exceeding
+class Solution
+{
+    //Function to merge the arrays.
+    public static void merge(long arr1[], long arr2[], int n, int m) 
+    {
+        // code here 
+        for(int i =m-1; i>=0; i--){
+            long currentLast = arr1[n-1];
+            int j;
+            for( j = n-2; j>=0 && arr1[j]>arr2[i]; j--){
+                arr1[j+1] = arr1[j];
+            }
+            
+            if(currentLast > arr2[i]){
+                arr1[j+1] = arr2[i];
+                arr2[i] = currentLast;
+            }
+        }
+    }
+}
+
+
+//with O(1) auxilirery space
+//Time limit exceeding
+class Solution
+{
+    //Function to merge the arrays.
+    public static void merge(long arr1[], long arr2[], int n, int m) 
+    {
+        // code here 
+        int i = 0;
+        long temp = 0;
+    
+    // While loop till last element 
+    // of array 1(sorted)
+    // is greater than first element 
+    // of array 2(sorted)
+        while (arr1[n - 1] > arr2[0])
+        {
+            if (arr1[i] > arr2[0]) 
+            {
+                
+                // Swap arr1[i] with first element
+                // of arr2 and sorting the updated
+                // arr2(arr1 is already sorted)
+                // swap(arr1[i],arr2[0]);
+                temp = arr1[i];
+                arr1[i] = arr2[0];
+                arr2[0] = temp;
+                Arrays.sort(arr2);
+            }
+            i++;
+        }
+    }
+    
+}
+
+
+//with O(1) auxilirery space
+class Solution
+{
+    //Function to merge the arrays.
+    public static void merge(long arr1[], long arr2[], int n, int m) 
+    {
+        // code here 
+        mergeArray(arr1,arr2,n,m);
+    }
+    
+   static void mergeArray(long[] arr1, long[] arr2 ,int m, int n)
+        {
+            int i = 0, j = 0, k = m - 1;
+            while (i <= k && j < n) {
+                if (arr1[i] < arr2[j])
+                    i++;
+                else {
+                    long temp = arr2[j];
+                    arr2[j] = arr1[k];
+                    arr1[k] = temp;
+                    j++;
+                    k--;
+                }
+            }
+            Arrays.sort(arr1);
+            Arrays.sort(arr2);
+        }
+}
