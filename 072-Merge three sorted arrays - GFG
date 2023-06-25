@@ -1,0 +1,201 @@
+//Naive Solution
+
+class Solution
+{
+    // A[], B[], C[]: input arrays
+    //Function to merge three sorted lists into a single list.
+    static ArrayList<Integer> merge3sorted(int A[], int B[], int C[])
+    {
+        // add ypur code here
+        int aLength = A.length;
+        int bLength = B.length;
+        int cLength = C.length;
+        
+        ArrayList<Integer> res = new ArrayList<Integer>(aLength+bLength+cLength);
+        
+        for(int i=0; i<aLength; i++)
+            res.add(A[i]);
+        for(int i=0; i<bLength; i++)
+            res.add(B[i]);
+        for(int i=0; i<cLength; i++)
+            res.add(C[i]);
+            
+        Collections.sort(res);
+        
+        return res;
+    }
+}
+
+
+//we are using more space then the permisiable
+
+
+//User function Template for Java
+
+class Solution
+{
+    // A[], B[], C[]: input arrays
+    //Function to merge three sorted lists into a single list.
+    static ArrayList<Integer> merge3sorted(int A[], int B[], int C[])
+    {
+        // add ypur code here
+        int[] temp1 = new int[A.length+B.length];
+        int[] temp2 = new int[temp1.length+C.length];
+        
+        ArrayList<Integer> res = new ArrayList<Integer>();
+        
+        mergerArray(temp1, A, B);
+        mergerArray(temp2, temp1, C);
+        
+        for(int i=0; i<temp2.length; i++){
+            res.add(temp2[i]);
+        }
+        
+        return res;
+    }
+    
+    static void mergerArray(int arr[], int A[], int B[]){
+        // arrSize = arr.size();
+        int aLength = A.length;
+        int bLength = B.length;
+        
+        int i=0, j=0, index=0;
+
+        while(i<aLength && j<bLength){
+            if(A[i]<=B[j]){
+                arr[index] =  A[i];
+                i++;
+                index++;
+            }else{
+                arr[index] = B[j];
+                j++;
+                index++;
+            }
+        }
+        
+        while(i<aLength){
+            arr[index] = A[i];
+            i++;
+            index++;
+        }
+        while(j<bLength){
+            arr[index] = B[j];
+            j++;
+            index++;
+        }
+    }
+}
+
+
+
+//Efficient solution with allowable space used
+class Solution
+{
+    //Function to merge three sorted lists into a single list.
+    static ArrayList<Integer> merge3sorted(int A[], int B[], int C[])
+    {
+        //Storing the size of the three lists.
+        int m = A.length;
+        int n = B.length;
+        int o = C.length;
+        
+        int i = 0, j = 0, k = 0;
+        
+        //Creating a list for storing output.
+        ArrayList<Integer> list = new ArrayList<>();
+        
+        //Using three pointers over the three lists which helps in choosing
+        //and storing the smallest element in the output list.
+        while(i < m && j < n && k < o)
+        {
+            //Finding minimum of A[i], B[j] and C[k].
+            int min = Math.min(Math.min(A[i], B[j]), C[k]);
+            
+            //We store the minimum value in output list. 
+            list.add(min);
+            
+            //Incrementing the pointer which had the minimum value.
+            if(min == A[i])
+              i++;
+            else if(min == B[j])
+                 j++;
+            else if(min == C[k])
+                 k++;
+        }
+        
+        //If C has exhausted(its pointer has crossed last element) then 
+        //we continue storing the minimum values from other two lists.
+        while(i < m && j < n)
+        {
+            if(A[i] <= B[j])
+            {
+                list.add(A[i]);
+                i++;
+            }
+            else
+            {
+                list.add(B[j]);
+                j++;
+            }
+        }
+        
+        //If B has exhausted(its pointer has crossed last element) then 
+        //we continue storing the minimum values from other two lists.
+        while(i < m && k < o)
+        {
+            if(A[i] <= C[k])
+            {
+                list.add(A[i]);
+                i++;
+            }
+            else
+            {
+                list.add(C[k]);
+                k++;
+            }
+        }
+        
+        //If A has exhausted(its pointer has crossed last element) then 
+        //we continue storing the minimum values from other two lists.
+        while(j < n && k < o)
+        {
+            if(B[j] <= C[k])
+            {
+                list.add(B[j]);
+                j++;
+            }
+            else
+            {
+                list.add(C[k]);
+                k++;
+            }
+        }
+        
+        //If B and C have exhausted (their pointer has crossed last element) then
+        //we continue storing the minimum values from the last list A.
+        while(i < m)
+        {
+            list.add(A[i]);
+            i++;
+        }
+        
+        //If A and C have exhausted (their pointer has crossed last element) then
+        //we continue storing the minimum values from the last list B.
+        while(j < n)
+        {
+            list.add(B[j]);
+            j++;
+        }
+        
+        //If A and B have exhausted (their pointer has crossed last element) then
+        //we continue storing the minimum values from the last list C.
+        while(k < o)
+        {
+            list.add(C[k]);
+            k++;
+        }
+        //returning the resultant list.
+        return list;
+        
+    }
+}
