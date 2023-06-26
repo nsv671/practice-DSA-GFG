@@ -1,0 +1,30 @@
+//Onliner solution
+//Expected Time Complexity: O(N log(N) ).
+//Expected Auxiliary Space: O(1).
+
+class Solution
+{
+    //Function to sort the array according to difference with given number.
+    static void sortABS(List<Integer> arr, int n, int k)  
+    {
+        // add your code here
+        Collections.sort(arr, (a,b) -> Math.abs(a-k) - Math.abs(b-k));
+    }
+}
+
+
+//Using our own comarator function
+
+class Solution
+{
+    //Function to sort the array according to difference with given number.
+    static void sortABS(List<Integer> arr, int n, int k){  
+        Collections.sort(arr, 
+            new Comparator<Integer>(){
+                public int compare(Integer x, Integer y){
+                    return (int)(Math.abs(x - k) - Math.abs(y - k));
+                }
+            }
+        );
+    }
+}
