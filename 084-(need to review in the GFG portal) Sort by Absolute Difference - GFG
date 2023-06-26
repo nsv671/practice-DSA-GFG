@@ -1,0 +1,13 @@
+//Onliner solution
+//Expected Time Complexity: O(N log(N) ).
+//Expected Auxiliary Space: O(1).
+
+class Solution
+{
+    //Function to sort the array according to difference with given number.
+    static void sortABS(List<Integer> arr, int n, int k)  
+    {
+        // add your code here
+        Collections.sort(arr, (a,b) -> Math.abs(a-k) - Math.abs(b-k));
+    }
+}
