@@ -1,0 +1,45 @@
+//Naive solution 
+//Time complexity O(N*Log(N))
+
+class Solution{
+    //Function to partition the array around the range such 
+    //that array is divided into three parts.
+    public void threeWayPartition(int array[], int a, int b)
+    {
+        // code here 
+        Arrays.sort(array);
+    }
+}
+
+//Efficient solution
+//Expected Time Complexity: O(n)
+//Expected Auxiliary Space: O(1)
+
+class Solution{
+    //Function to partition the array around the range such 
+    //that array is divided into three parts.
+    public void threeWayPartition(int array[], int a, int b)
+    {
+        // code here 
+        int iow=0, mid =0, high = array.length-1;
+        
+        while(mid<=high){
+            if(array[mid]<a){
+                swap(iow, mid, array);
+                iow++;
+                mid++;
+            }else if(array[mid]>b){
+                swap(high, mid, array);
+                high--;
+            }else{
+                mid++;
+            }
+        }
+    }
+    
+    public static void swap(int a, int b, int[] arr){
+        int temp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = temp;
+    }
+}
