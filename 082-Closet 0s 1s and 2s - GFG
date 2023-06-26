@@ -1,0 +1,85 @@
+//Time complexity O(N*Log(N))
+
+class Solution
+{
+    // The function should do the stated modifications in the given array arr[]
+    // Do not return anything.
+    
+    // arr[]: Input Array
+    // N: Size of the Array arr[]
+    //Function to segregate 0s, 1s and 2s in sorted increasing order.
+    public static void segragate012(int arr[], int N){
+        // Your Code Here
+        Arrays.sort(arr);
+    }
+}
+
+//Time complexity O(N) 3 traversal
+
+class Solution
+{
+    public static void segragate012(int arr[], int N){
+        // Your Code Here
+        int index = 0;
+        
+        for(int i=0; i<N; i++){
+            if(arr[i] == 0){
+                swap(arr, index, i);
+                index++;
+            }
+                
+        }
+        for(int i=0; i<N; i++){
+            if(arr[i] == 1){
+                swap(arr, index, i);
+                index++;
+            }
+                
+        }
+        for(int i=0; i<N; i++){
+            if(arr[i] == 2){
+                swap(arr, index, i);
+                index++;
+            }
+                
+        }
+    }
+    
+    public static void swap(int arr[], int a, int b){
+        int temp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = temp;
+    }
+}
+
+
+//Time complexity O(N) 1 traversal
+
+class Solution
+{
+    public static void segragate012(int arr[], int N){
+        // Your Code Here
+        int i = 0, mid=0, h = N-1;
+        
+        while(mid<=h){
+            if(arr[mid] == 0){
+                swap(arr, i, mid);
+                i++;
+                mid++;
+            }else if(arr[mid] == 1){
+                mid++;
+            }else{
+                swap(arr, mid, h);
+                h--;
+            }
+        }
+        
+        
+    }
+    
+    public static void swap(int arr[], int a, int b){
+        int temp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = temp;
+    }
+}
