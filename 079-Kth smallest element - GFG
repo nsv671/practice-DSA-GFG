@@ -1,0 +1,66 @@
+//Expected Time Complexity: O(NlogK)
+//Expected Auxilliary Space: O(K)
+
+class Solution
+{
+    //Function to find the kth smallest element in the array.
+    public static int kthSmallest(int arr[], int n, int k)
+    {
+        // Your code here
+        Arrays.sort(arr);
+        
+        return arr[k-1];
+    }
+}
+
+
+//Efficient solution
+//Expected Time Complexity: O(NlogK)
+//Expected Auxilliary Space: O(K)
+
+class Solution
+{
+    //Function to find the kth smallest element in the array.
+    public static int kthSmallest(int arr[], int n, int k)
+    {
+        // Your code here
+        int low =0, high = n-1;
+        
+        while(low<=high){
+            int p = lPartition(arr, low, high);
+            // System.out.println("---"+p);
+            if(p==k-1)
+                return arr[p];
+            else if(p>k-1){
+                high = p-1;
+            }else{
+                low = p+1;
+            }
+        }
+        
+        return -1;
+    }
+    
+    public static int lPartition(int arr[], int l, int h){
+        
+        int i=l-1;
+        int pivot = arr[h];
+        
+        for(int j=l; j<=h-1; j++){
+            if(arr[j]<pivot){
+                i++;
+                swap(arr, i, j);
+            }
+        }
+        
+        swap(arr, i+1, h);
+        
+        return i+1;
+    }
+    
+    public static void swap(int arr[], int a, int b){
+        int temp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = temp;
+    }
+}
