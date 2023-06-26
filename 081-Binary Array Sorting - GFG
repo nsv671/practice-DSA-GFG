@@ -1,0 +1,38 @@
+//Time complexity O(N*Log(N))
+//Expected Auxilliary Space: O(1)
+
+class Solution
+{
+    //Function to sort the binary array.
+    static void binSort(int A[], int N)
+    {
+        // add your code here
+        Arrays.sort(A);
+    }
+}
+
+//Expected Time Complexity: O(N)
+//Expected Auxilliary Space: O(1)
+
+class Solution
+{
+    //Function to sort the binary array.
+    static void binSort(int A[], int N)
+    {
+        // add your code here
+        int index=0;
+        
+        for(int j=0; j<N;j++){
+            if(A[j]==0){
+                swap(A, index, j);
+                index++;
+            }
+        }
+    }
+    
+    public static void swap(int arr[], int a, int b){
+        int temp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = temp;
+    }
+}
