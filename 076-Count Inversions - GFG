@@ -1,0 +1,94 @@
+//Naive solution
+class Solution
+{
+    // arr[]: Input Array
+    // N : Size of the Array arr[]
+    //Function to count inversions in the array.
+    static long inversionCount(long arr[], long N)
+    {
+        // Your Code Here
+        long res =0;
+        
+        for(int i=0; i<N-1; i++){
+            for(int j = i+1; j<N; j++)
+                if(arr[i]>arr[j])
+                    res++;
+        }
+        
+        return res;
+    }
+}
+
+//Optimize solution
+//Time complexity O(Nlog(N)) and Auxiliary space O(N)
+class Solution
+{
+    // arr[]: Input Array
+    // N : Size of the Array arr[]
+    //Function to count inversions in the array.
+    static long inversionCount(long arr[], long N)
+    {
+        // Your Code Here
+        
+        return countInverse(arr, 0, N-1);
+    }
+
+    //counting inverse of a left array, right arry and combine left and right array and counting while doing it
+    static long countInverse(long arr[], long l, long h){
+        long res = 0;
+        if(l<h){
+            long mid = l + (h-l)/2;
+            res+= countInverse(arr, l, mid);
+            res+= countInverse(arr, mid+1, h);
+            res+= countAndMerge(arr, l, mid, h);
+        }
+        
+        return res;
+    }
+
+    //mergeing the 2 sorted arry and counting inverse for that
+    static long countAndMerge(long arr[], long l, long m, long h){
+        long n1 = m-l+1, n2 = h-m;
+        long left[] = new long[(int)n1];
+        long right[] = new long[(int)n2];
+        
+        for(int i=0; i<n1; i++){
+            left[i] = arr[(int)l+i];
+        }
+        
+        for(int i=0; i<n2; i++){
+            right[i] = arr[(int)m+i+1];
+        }
+        
+        int i=0, j=0;
+        long res=0, k=l;
+        
+        while(i<n1 && j<n2){
+            if(left[i]<=right[j]){
+                arr[(int)k] = left[i];
+                i++;
+                k++;
+            }else{
+                arr[(int)k] = right[j];
+                j++;
+                k++;
+                res+=n1-i;
+            }
+        }
+        
+        while(i<n1){
+            arr[(int)k] = left[i];
+            i++;
+            k++;
+        }
+        
+        while(j<n2){
+            arr[(int)k] = right[j];
+            j++;
+            k++;
+        }
+        
+        return res;
+    }
+    
+}
