@@ -1,0 +1,121 @@
+//Naive solution
+//Time complexity O(N^2)
+
+class Solution
+{
+    
+    // x[], y[]: input array elements
+    // M, N: size of arrays x[] and y[] respectively
+    //Function to count number of pairs such that x^y is greater than y^x.
+    static long countPairs(int x[], int y[], int M, int N)
+    {
+        // your code here
+        long res =0; 
+        for(int i=0; i<M; i++){
+            for(int j=0; j<N; j++){
+                if(Math.pow(x[i], y[j]) > Math.pow(y[j], x[i] ))
+                    res++;
+            }
+        }
+        
+        return res;
+    }
+}
+
+
+//Efficient solution
+//Expected Time Complexity: O((N + M)log(N)).
+//Expected Auxiliary Space: O(1).
+
+
+/* solution approach explain */
+/*
+Efficient Approach: The above two approaches can be further optimized in O(N) time complexity.
+This approach uses the concept of suffix sum to find the solution. We can observe that if y > x, then x^y > y^x. 
+However, the following base cases and exceptions need to be considered:
+
+If x = 0, then count of possible y is 0.
+If x = 1, then count of possible y is the frequency of 0’s is the Y[] is the required answer.
+If x = 2, 23 < 32 and 24 = 42. Hence, for x = 2, we cannot have a valid pair with y = {2, 3, 4}. Hence, the sum of frequencies of 0, 1, and all numbers gt 4 in Y[] gives us the count of required valid pairs
+If x = 3, the sum of all frequencies except 3 in Y[] gives us the required count of possible pairs.
+*/
+
+class Solution
+{
+    
+    // x[], y[]: input array elements
+    // M, N: size of arrays x[] and y[] respectively
+    //Function to count number of pairs such that x^y is greater than y^x.
+    static long countPairs(int x[], int y[], int M, int N)
+    {
+        // your code here
+        Arrays.sort(x);
+        Arrays.sort(y);
+        
+        int zero = 0, one = 0, two = 0, three = 0, four = 0;
+        
+        for(int i=0; i<N; i++){
+            if(y[i] == 0)
+                zero++;
+            else if(y[i] == 1)
+                one++;
+            else if(y[i] == 2)
+                two++;
+            else if(y[i] == 3)
+                three++;
+            else if(y[i] == 4)
+                four++;
+        }
+        
+        long res = 0;
+
+        //in general X<Y then X^Y > Y^X (Except for 0,1,2,3,4)
+
+        for(int i=0;i<M; i++){
+            //corner case handling for 0,1,2,3
+            if(x[i] == 0)
+                continue;
+            
+            if(x[i] == 1)
+                res+=zero;
+            else if(x[i] == 2){
+                int index = getIndex(y, N, 2);
+                if(index !=-1)
+                    res += N-index;
+                res -= three;
+                res -= four;
+                res += one + zero;
+            }else if(x[i] == 3){
+                int index = getIndex(y, N, 3);
+                if(index != -1)
+                    res += N - index;
+                res += two;
+                res += one + zero;
+            }else{
+                int index = getIndex(y,N ,x[i]);
+                if(index != -1)
+                    res += N - index;
+                res += one + zero; 
+            }
+        }
+        
+        return res;
+    }
+    
+    public static int getIndex(int y[], int N, int x){
+        int low =0, high = N-1;
+        int index = -1;
+        
+        while(low<=high){
+            int mid = low + (high-low)/2;
+            if(x<y[mid]){
+                index = mid;
+                high = mid-1;
+            }else{
+                low = mid + 1;
+            }
+        }
+        
+        return index;
+    }
+}
