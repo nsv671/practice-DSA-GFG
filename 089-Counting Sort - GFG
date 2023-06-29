@@ -1,0 +1,53 @@
+//my solution COUNTING SORT
+//Expected Time Complexity: O(N).
+//Expected Auxiliary Space: O(N).
+
+class Solution
+{
+    //Function to arrange all letters of a string in lexicographical 
+    //order using Counting Sort.
+    public static String countSort(String arr)
+    {
+        // code here
+        //only for lowercase alphabetical charactor
+        char[] charArray = new char[arr.length()];
+        int[] countArray = new int[26];
+        
+        //creating charactor array
+        for(int i=0; i<arr.length(); i++){
+            charArray[i] = arr.charAt(i);
+        }
+        
+        //counting frequency
+        for(int i=0; i<arr.length(); i++){
+            countArray[charArray[i]-'a']++;
+        }
+        
+        // Change count[i] so that count[i] now contains actual
+        // position of this character in output array
+        for(int i=1; i< 26; i++){
+            countArray[i] = countArray[i]+countArray[i-1];
+        }
+        
+        //sorted output charactor array
+        int output[] = new int[arr.length()];
+        
+        //putting its value
+        for(int i = 0; i<arr.length(); i++){
+            //finding out the last position of any occurance  of a charactor
+            //minues 1 because array index starts from 0
+            output[countArray[charArray[i]-'a']-1] = charArray[i];
+            //updating the count array(i.e. decresing it by 1) science we have added one of it instances in the array
+            countArray[charArray[i] - 'a']--;
+        }
+        
+        String resStr = "";
+        
+        for(int i=0; i< arr.length(); i++){
+            //converting ascii valuéto charactor then converting charactor to string then merging with result string
+            resStr += String.valueOf((char)output[i]);
+        }
+        
+        return resStr;
+    }
+}
