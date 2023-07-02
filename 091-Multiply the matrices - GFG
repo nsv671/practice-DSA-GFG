@@ -1,0 +1,31 @@
+//Time complexcity -  O(N1 * M1 * M2)
+//Expected Auxiliary Space: O(N1 * M2) for resultant matrix. 
+
+class Solution
+{
+    //Function to multiply two matrices.
+    static int[][] multiplyMatrix(int A[][], int B[][])
+    {
+ 
+        int rowA = A.length;
+        int columnA = A[0].length;
+        int rowB = B.length;
+        int columnB = B[0].length;
+        
+        if(columnA !=rowB)
+            return new int[0][0];
+        
+        int res[][] = new int[rowA][columnB];
+            
+        for(int i=0; i<rowA; i++){ 
+            for(int j =0; j<columnB; j++){
+                int multipication =0;
+                for(int k=0; k< columnA; k++){
+                      multipication += A[i][k]*B[k][j];
+                }             
+                res[i][j] = multipication;
+            }           
+        }   
+        return res;
+    }
+}
