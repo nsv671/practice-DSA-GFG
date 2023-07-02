@@ -1,0 +1,28 @@
+//Expected Time Complexity: O(N * N)
+//Expected Auxiliary Space: O(N * N) for the resultant list only.
+
+class Solution
+{
+    //Function to return list of integers visited in snake pattern in matrix.
+    static ArrayList<Integer> snakePattern(int matrix[][])
+    {
+        // code here 
+        int rowMatrixLength = matrix.length;
+        
+        ArrayList<Integer> res = new ArrayList<Integer>();
+        
+        for(int i=0; i<rowMatrixLength; i++){
+            if(i%2==0){
+                for(int j=0; j<rowMatrixLength; j++){
+                    res.add(matrix[i][j]);
+                }
+            }else{
+                for(int j = rowMatrixLength-1; j>=0; j--){
+                    res.add(matrix[i][j]);
+                }
+            }
+        }
+        
+        return res;
+    }
+}
