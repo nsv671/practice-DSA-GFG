@@ -1,0 +1,26 @@
+//Expected Time Complexity: O(n1 * m1)
+//Expected Auxiliary Space: O(1)
+
+class Solution
+{
+    //Function to interchange the rows of a matrix.
+    static void interchangeRows(int matrix[][])
+    {
+        // code here 
+        int row = matrix.length;
+        int column = matrix[0].length;
+        
+        for(int i=0; i< column; i++){
+            int low = 0, high = row-1;
+            
+            while(low<high){
+                int temp = matrix[low][i];
+                matrix[low][i] = matrix[high][i];
+                matrix[high][i] = temp;
+                
+                low++;
+                high--;
+            }
+        }
+    }
+}
