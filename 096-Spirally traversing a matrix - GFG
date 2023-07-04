@@ -1,0 +1,56 @@
+//Expected Time Complexity: O(r*c)
+//Expected Auxiliary Space: O(r*c), for returning the answer only.
+
+class Solution
+{
+    //Function to return a list of integers denoting spiral traversal of matrix.
+    static ArrayList<Integer> spirallyTraverse(int matrix[][], int r, int c)
+    {
+        // code here 
+        ArrayList<Integer> res = new ArrayList<Integer>();
+        
+        //using this veriable we are tracking which roe and column we have visited
+        int top=0, left=0;
+        int bottom = r-1, right=c-1;
+        
+        while(top<=bottom && left<=right){
+            //top row traverse
+            for(int i=left; i<=right; i++){
+              res.add(matrix[top][i]);
+          }
+          //updating the top row value
+          top++;
+          
+          //right column traverse
+          for(int i= top; i<=bottom; i++){
+              res.add(matrix[i][right]);
+          }
+          //updating the right column value
+          right--;
+          
+          //checking whether have crossed bottom or not
+          if(top<=bottom){
+              // bottom row traverse
+              for(int i = right; i>=left; i--){
+                  res.add(matrix[bottom][i]);
+              }
+              
+              // updating the bottom row value
+              bottom--;
+          }
+          
+          // checking whether left crossed right
+          if(left<=right){
+              // left column traverse
+              for(int i=bottom; i>=top;i--){
+                  res.add(matrix[i][left]);
+              }
+              
+              // updating the left column value
+              left++;
+          }
+        }
+        
+        return res;
+    }
+}
