@@ -1,0 +1,29 @@
+//Expected Time Complexity: O(N + M)
+//Expected Auxiliary Space: O(1)
+
+class Solution 
+{ 
+    //Function to search a given number in row-column sorted matrix.
+	static boolean search(int matrix[][], int n, int m, int x) 
+	{  
+	    // code here 
+	    
+	    if(x<matrix[0][0] || x>matrix[n-1][m-1])
+	        return false;
+	   
+	   int top = 0;
+	   int right = m-1;
+	        
+	   while(top<n && right>=0){
+	       if(x == matrix[top][right])
+	        return true;
+	       else if(x<matrix[top][right])
+	        right--;
+	       else
+	        top++;
+	   }
+	    
+	    
+	    return false;
+	} 
+} 
