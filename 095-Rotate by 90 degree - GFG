@@ -1,0 +1,32 @@
+//Expected Time Complexity: O(N2)
+//Expected Auxiliary Space: O(1)
+
+class Solution
+{
+    //Function to rotate matrix anticlockwise by 90 degrees.
+    static void rotateby90(int matrix[][], int n) 
+    { 
+        // code here
+        // 1) transpose of given matrix
+        for(int i=0; i<n; i++){
+            for(int j=i+1; j<n; j++){
+                swap(matrix, i, j);
+            }
+        }
+        
+        // 2) reversing the transpose matrix
+        // we can use while loop in inner loop with low and high
+        for(int i=0; i<n/2; i++)
+            for(int j=0; j<n; j++){
+                int temporary = matrix[i][j];
+                matrix[i][j] = matrix[n-1-i][j];
+                matrix[n-1-i][j] = temporary;
+            }
+    }
+    
+    static void swap(int matrix[][], int i, int j){
+        int temp = matrix[i][j];
+        matrix[i][j] = matrix[j][i];
+        matrix[j][i] = temp;
+    }
+}
