@@ -1,0 +1,94 @@
+//Expected Time Complexity: O(N * N)
+//Expected Auxiliary Space: O(N)
+
+class Solution 
+{
+    //Function to find minimum number of operations that are required 
+    //to make the matrix beautiful.
+    static int findMinOperation(int matrix[][], int n)
+    {
+        // Initialize the sumRow[] and sumCol[] array to 0
+        int[] sumRow = new int[n];
+        int[] sumCol = new int[n];
+        
+        // Calculate sumRow[] and sumCol[] array
+        for (int i = 0; i < n; ++i){
+            int row =0;
+            int column =0;
+            for (int j = 0; j < n; ++j) {
+                row += matrix[i][j];
+                column += matrix[j][i];
+            }
+            sumRow[i] = row;
+            sumCol[i] = column;
+        }
+        
+        // Find maximum sum value in either row or in column
+        int maxSum = 0;
+        
+        for(int i=0; i< n; i++){
+            maxSum = Math.max(maxSum, Math.max(sumRow[i], sumCol[i]));
+        }
+        
+        int res =0;
+        for(int i=0, j=0; i<n && j<n;){
+            // Find minimum increment required in either row or column
+            int difference = maxSum - Math.max(sumRow[i], sumCol[j]);
+            
+            // Add difference in corresponding cell,
+            // sumRow[] and sumCol[] array
+            matrix[i][j] += difference;
+            sumRow[i] += difference;
+            sumCol[j] += difference;
+            
+            // Update the count variable
+            res+=difference;
+            
+            // If jth column satisfied, increment jth value
+            // for next iteration
+            if(maxSum == sumRow[i])
+                i++;
+                
+            // If jth column satisfied, increment jth value
+            // for next iteration
+            if(maxSum == sumCol[j])
+                j++;
+        }
+        
+        return res;
+    }
+}
+
+//when we do not need know the position where we need to increment. we can follow below approach
+//Expected Time Complexity: O(N * N)
+//Expected Auxiliary Space: O(1)
+class Solution 
+{
+    //Function to find minimum number of operations that are required 
+    //to make the matrix beautiful.
+    static int findMinOperation(int matrix[][], int n)
+    {
+        // code here 
+        // sum of matrix element
+        int sum =0;
+        for(int i=0; i<n; i++){
+            for(int j=0; j<n ;j++)
+                sum+=matrix[i][j];
+        }
+        
+        int max=0;
+        for(int i=0; i<n; i++){
+            int rowSum =0, columnSum =0;
+            for(int j=0; j<n; j++){
+                rowSum += matrix[i][j];
+                columnSum += matrix[j][i];
+            }
+            max = Math.max(max, Math.max(rowSum, columnSum));
+        }
+        
+        
+        int sumOfFinalArrayMatrix = max*(n);
+        
+        return sumOfFinalArrayMatrix - sum;
+    }
+}
