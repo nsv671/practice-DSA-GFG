@@ -1,0 +1,77 @@
+//Brut force solution
+//Time Complexity O(n^2 * maxStringLength)
+
+
+class Solution{
+    public long noOfPairs(String box[]){
+       // Code Here.
+       long beautifulStringCount =0;
+       
+       for(int i=0; i<box.length-1;i++)
+        for(int j=i+1; j<box.length; j++)
+            if(isBeautiful(box[i]+box[j]))
+                beautifulStringCount++;
+        
+        return beautifulStringCount;
+    }
+    
+    static boolean isBeautiful(String str){
+        int[] frequency = new int[26];
+        
+        for(char ch : str.toCharArray()){
+            frequency[ch - 'a']++;
+        }
+        
+        int evenFrequency =0;
+        int oddFrequency =0;
+        
+        for(int fre : frequency){
+            if(fre==0)
+                continue;
+            if(fre%2==0)
+                evenFrequency++;
+            else
+                oddFrequency++;
+        }
+        
+        if(oddFrequency<=1)
+            return true;
+        return false;
+    }
+}
+
+
+//Compact code
+
+class Solution{
+    public long noOfPairs(String box[]){
+       // Code Here.
+      long beautifulStringCount =0;
+       
+      for(int i=0; i<box.length-1;i++){
+        for(int j=i+1; j<box.length; j++){
+            String concatinate = box[i]+box[j];
+            
+            int[] frequency = new int[26];
+            for(char ch : concatinate.toCharArray()){
+                frequency[ch - 'a']++;
+            }
+            
+            int evenCount=0, oddCount=0;
+            for(int fre:frequency){
+                if(fre%2==0)
+                    evenCount++;
+                else
+                    oddCount++;
+            }
+            
+            if(oddCount<2)
+                beautifulStringCount++;
+        }
+      }
+        
+        return beautifulStringCount;
+    
+    }
+    
+}
