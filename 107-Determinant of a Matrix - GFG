@@ -1,0 +1,51 @@
+//Expected Time Complexity: O(N3)
+//Expected Auxiliary Space: O(N2)
+
+class Solution
+{
+    //Function for finding determinant of matrix.
+    static int determinantOfMatrix(int matrix[][], int n)
+    {
+        // code here 
+        
+        return determinant(matrix, n);
+    }
+    
+    static int determinant(int[][] matrix, int n){
+        if(n==1)
+            return matrix[0][0];
+        
+        if(n==2)
+            return ((matrix[0][0]*matrix[1][1]) - (matrix[1][0]*matrix[0][1]));
+            
+        int det = 0;
+        for(int i=0; i<n; i++)
+            det += Math.pow(-1, i) * matrix[0][i] * determinant(createNewMatrix(matrix, 0, i), n-1);
+            
+        return det;
+    }
+    
+    static int[][] createNewMatrix(int matrix[][], int row, int column){
+        int n = matrix.length;
+        int newMatrix[][] = new int[n-1][n-1];
+        
+        int rowIndex =0;
+        
+        for(int i=0; i<n; i++){
+            if(i==row)
+                continue;
+            
+            int columnIndex =0;
+            for(int j=0; j<n; j++){
+                if(j==column)
+                    continue;
+                
+                newMatrix[rowIndex][columnIndex] = matrix[i][j];
+                columnIndex++;
+            }
+            rowIndex++;
+        }
+        
+        return newMatrix;
+    }
+}
