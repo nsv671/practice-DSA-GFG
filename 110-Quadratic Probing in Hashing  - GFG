@@ -1,0 +1,42 @@
+//Expected Time Complexity: O(N).
+//Expected Auxiliary Space: O(1).
+
+class Solution{
+    //Function to fill the array elements into a hash table 
+    //using Quadratic Probing to handle collisions.
+    static void quadraticProbing(int[] hash, int hash_size, int arr[], int N)
+    {
+        //filling hash array with -1
+        Arrays.fill(hash, -1);
+        
+        for(int i=0; i<N; i++){
+        // Computing the hash value
+            int index = arr[i]%hash_size;
+
+            // Insert in the table if there
+            // is no collision
+            if(hash[index] == -1){
+                hash[index] = arr[i];
+            }
+            else{
+                // If there is a collision
+                // iterating through all
+                // possible quadratic values
+
+                for (int j = 0; j < tsize; j++) 
+                {
+                    // Computing the new hash value
+                    int t = (hv + j * j) % tsize;
+                    if (hash[t] == -1) 
+                    {
+                        // Break the loop after
+                        // inserting the value
+                        // in the table
+                        hash[t] = arr[i];
+                        break;
+                    }
+                }
+            }
+        }
+    }
+}
