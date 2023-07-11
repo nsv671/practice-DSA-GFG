@@ -1,0 +1,23 @@
+//Expected Time Complexity : O(N)
+//Expected Auxilliary Space : O(N)
+
+class Solution{
+    //Function to check if two arrays are equal or not.
+    public static boolean check(long A[],long B[],int N)
+    {
+        //Your code here
+        HashMap<Long, Long> hm = new HashMap<Long, Long>();
+        
+        for(int i=0; i<N; i++)
+            hm.put(A[i], hm.getOrDefault(A[i], (long)0)+1);
+        
+        for(int i=0; i<N; i++){
+            hm.put(B[i], hm.getOrDefault(B[i], (long)0)-1);
+            
+            if(hm.get(B[i])==0)
+                hm.remove(B[i]);
+        }
+        
+        return hm.size()==0? true:false;
+    }
+}
