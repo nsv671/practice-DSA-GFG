@@ -1,0 +1,64 @@
+//Expected Time Complexity: O(n).
+//Expected Auxiliary Space: O(n).
+
+//my solution
+class Solution
+{
+    // arr[]: input array
+    // n: size of array
+    
+    //Function to return the count of non-repeated elements in the array.
+    static long countNonRepeated(int arr[], int n)
+    {
+        // add your code
+        HashMap<Integer, Integer> hs = new HashMap<Integer, Integer>();
+        long res =0;
+        
+        for(int i=0; i<n; i++)
+            hs.put(arr[i], hs.getOrDefault(arr[i],0)+1);
+        
+        // Map.Entry<String, Integer> is data type for the item
+        //Map.Entry interface in Java provides certain methods to access the entry in the Map.
+        // Using entrySet() to get the entry's of the map
+        for(Map.Entry<Integer, Integer> x : hs.entrySet())
+            if(x.getValue()==1)
+                res++;
+                
+        return res;
+    }
+}
+
+
+//GFG author solution
+class Solution
+{
+    //Function to return the count of non-repeated elements in the array.
+    static long countNonRepeated(int arr[], int n)
+    {
+        //using map to store frequency of each element.
+        Map<Integer, Integer> m = new HashMap<>(); 
+        
+        //storing the frequency of each element in map.
+        for (int i = 0; i < n; i++) { 
+            if (m.containsKey(arr[i])) { 
+                m.put(arr[i], m.get(arr[i]) + 1); 
+            } 
+            else { 
+                m.put(arr[i], 1); 
+            } 
+        } 
+        long count = 0;
+        
+        //iterating over the array elements.
+        for (int i = 0; i < n; i++)
+        
+            //if frequency of current element in map is 1,
+            //then we increment the counter.
+            if (m.get(arr[i]) == 1)
+                count++;
+        
+        //returning the count of non-repeated elements.        
+        return count; 
+
+    }
+}
