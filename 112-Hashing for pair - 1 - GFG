@@ -1,0 +1,27 @@
+//Expected Time Complexity: O(N).
+//Expected Auxiliary Space: O(N).
+
+
+class Geeks {
+    // Complete this function
+    // Function to check if there is a pair with the given sum in the array.
+    public static int sumExists(int arr[], int N, int sum) {
+        // Your code here, Geeks
+        
+        HashSet<Integer> hs = new HashSet<Integer>();
+        
+        for(int i=0; i<N; i++){
+            hs.add(arr[i]);
+        }
+        
+        for(int i=0; i<N; i++){
+        // sum-arr[i] != arr[i]  
+        // adding this condition because some times sum will be 2 times of any element the it will fail as array only contains distinct element
+            if(hs.contains(sum-arr[i]) && sum-arr[i] != arr[i])
+                return 1;
+        }
+        
+        
+        return 0;
+    }
+}
