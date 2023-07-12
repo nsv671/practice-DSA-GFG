@@ -1,0 +1,62 @@
+//Expected Time Complexity: O(n + m).
+//Expected Auxiliary Space: O(m+n).
+
+//my solution
+class Solution {
+    // Function to return the count of the number of elements in
+    // the intersection of two arrays.
+    public static int NumberofElementsInIntersection(int a[], int b[], int n, int m) {
+        // Your code here
+        int res = 0;
+        
+        HashSet<Integer> hsA = new HashSet<Integer>();
+        HashSet<Integer> hsB = new HashSet<Integer>();
+        
+        for(int i=0; i<n; i++)
+            hsA.add(a[i]);
+            
+        for(int i=0; i<m; i++)
+            hsB.add(b[i]);
+                
+        for(Integer x : hsB)
+            if(hsA.contains(x.intValue()))
+                res++;
+        
+        return res;
+    }
+};
+
+//my solution with less auxiliarey space use
+//Expected Time Complexity: O(n + m).
+//Expected Auxiliary Space: O(min(m,n)).
+
+class Solution {
+    public static int NumberofElementsInIntersection(int a[], int b[], int n, int m) {
+
+        int res = 0;        
+        HashSet<Integer> hs = new HashSet<Integer>();
+        
+        if(n>m){
+            for(int i=0; i<m; i++)
+                hs.add(b[i]);
+            
+            for(int i=0; i<n; i++)
+                if(hs.contains(a[i])){
+                    res++;
+                    hs.remove(a[i]);
+                }
+        }    
+        else{
+            for(int i=0; i<n; i++)
+                hs.add(a[i]);
+                
+            for(int i=0; i<m; i++)
+                if(hs.contains(b[i])){
+                    res++;
+                    hs.remove(b[i]);
+                }
+        }
+                
+        return res;
+    }
+};
