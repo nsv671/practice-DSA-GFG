@@ -1,0 +1,40 @@
+//Expected Time Complexity: O(n)
+//Expected Auxiliary Space: O(n)
+
+class Solution
+{
+    //Function to return list containing all the pairs having both
+    //negative and positive values of a number in the array.
+    public static ArrayList<Integer>findPairs(int arr[], int n) 
+    { 
+    	// code here.
+    	ArrayList<Integer> res = new ArrayList<Integer>();
+    	HashMap<Integer, Integer> hm = new HashMap<Integer, Integer>();
+    	
+    	
+    	for(int i=0; i<n; i++){
+    	    //if the opposite value of arr[i] present then we are add it to res and updating the map
+    	    if(hm.containsKey(-1*arr[i])){
+    	        
+	            res.add(-1*Math.abs(arr[i]));
+	            res.add(Math.abs(arr[i]));
+	            hm.put((-1*arr[i]), hm.get(-1*arr[i])-1);
+	            
+	            if(hm.get(-1*arr[i]) == 0)
+	                hm.remove(-1*arr[i]);
+    	        continue;
+    	    }
+    	    
+    	    //checking if that element is present
+    	    if(hm.containsKey(arr[i])){
+    	        //updating its frequency
+    	        hm.put(arr[i], hm.get(arr[i])+1);
+    	    }else{
+    	        //adding to hash map
+    	        hm.put(arr[i], 1);
+    	    }
+    	}
+    	
+    	return res;
+    }
+}
