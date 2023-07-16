@@ -1,0 +1,30 @@
+//Expected Time Complexity: O(n)
+//Expected Auxiliary Space: O(n)
+
+class Solution
+{
+    //Function to return the name of candidate that received maximum votes.
+    public static String[] winner(String arr[], int n)
+    {
+        // add your code
+        HashMap<String, Integer> hm = new HashMap<String, Integer>();
+        for(String candidate : arr)
+            hm.put(candidate, hm.getOrDefault(candidate, 0)+1);
+        
+        String name = "";
+        int vote = 0;
+        
+        for(int i=0; i<n; i++){
+            if(hm.get(arr[i])>vote){
+                name = arr[i];
+                vote = hm.get(arr[i]);
+            }else if(hm.get(arr[i])==vote){
+                //this function return +ve if name is greater than arr[i] lexicographically, return -ve if it is less and return 0 if it is equal
+                if(name.compareTo(arr[i])>0)
+                    name = arr[i];
+            }
+        }
+        
+        return new String[]{name, String.valueOf(vote)};
+    }
+}
