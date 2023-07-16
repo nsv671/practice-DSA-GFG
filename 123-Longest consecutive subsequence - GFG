@@ -1,0 +1,68 @@
+//Expected Time Complexity: O(N).
+//Expected Auxiliary Space: O(N).
+
+class Solution
+{   
+    // arr[] : the input array
+    // N : size of the array arr[]
+    
+    //Function to return length of longest subsequence of consecutive integers.
+	static int findLongestConseqSubseq(int arr[], int N)
+	{
+	   // add your code here
+	   int maxConsecutiveLength =1;
+	   HashSet<Integer> hs = new HashSet<Integer>();
+	   
+	   for(int i=0; i<N; i++){
+	       hs.add(arr[i]);
+	   }
+	   
+	   for(int x : arr){
+	       if(!hs.contains(x-1)){
+	           int consecutiveLength = 1;
+	           
+	           while(hs.contains(x+consecutiveLength))
+	            consecutiveLength++;
+	            
+	           maxConsecutiveLength = Math.max(maxConsecutiveLength, consecutiveLength);
+	       }
+	   }
+	   
+	   return maxConsecutiveLength;
+	}
+}
+
+//1st approch which i come with
+
+class Solution
+{   
+    // arr[] : the input array
+    // N : size of the array arr[]
+    
+    //Function to return length of longest subsequence of consecutive integers.
+	static int findLongestConseqSubseq(int arr[], int N)
+	{
+	   // add your code here
+	   int maxConsecutiveLength =1;
+	   HashSet<Integer> hs = new HashSet<Integer>();
+	   
+	   for(int i=0; i<N; i++){
+	       hs.add(arr[i]);
+	   }
+	   
+	   for(int i=0; i<N; i++){
+	       if(hs.contains(arr[i]-1))
+	        continue;
+	        
+	        int consecutiveLength = 1;
+	        
+            while(hs.contains(arr[i]+consecutiveLength)){
+                consecutiveLength++;
+                maxConsecutiveLength = Math.max(maxConsecutiveLength, consecutiveLength);
+            }
+	        
+	   }
+	   
+	   return maxConsecutiveLength;
+	}
+}
