@@ -1,0 +1,66 @@
+//Expected Time Complexity: O(n)
+//Expected Auxilliary Space: O(n)
+
+//Idea : If we can store the contigous sub array sum using kadane's algorithm in a hasmap
+//We know that for N length array the total number of sub arrays will be (N)*(N+1)/2 .
+//In Hashmap we will have the prefix sum count.
+//If sum == 0 , we will include ans += (val)*(val+1)/2
+//If sum > 0 , thats means we have exclude 1 sub array and count total number of subarrays for (val-1),
+//so if sum > 0 , ans += (val-1)*((val-1)+1)/2;
+//return the total count (ans)
+
+class Solution{
+    //Function to count subarrays with sum equal to 0.
+    public static long findSubarray(long[] arr ,int n) 
+    {
+        //Your code here
+        long res =0, sum =0;
+        HashMap<Long, Integer> hm = new HashMap<Long, Integer>();
+        
+        for(int i=0; i< n; i++){
+            sum += arr[i];
+            
+            hm.put(sum, hm.getOrDefault(sum, 0)+1);
+        }
+        
+        for(Map.Entry<Long, Integer> x: hm.entrySet()){
+            long value = x.getValue();
+            
+            if(x.getKey()==0)
+                res += value*(value+1)/2;
+            else
+                res += (value*(value-1))/2;
+        }
+        
+        return res;
+    }
+}
+
+
+//anothertype aproch
+class Solution{
+    //Function to count subarrays with sum equal to 0.
+    public static long findSubarray(long[] arr ,int n) 
+    {
+        //Your code here
+        long res =0, sum =0;
+        HashMap<Long, Integer> hm = new HashMap<Long, Integer>();
+        
+        for(int i=0; i<n; i++){
+            sum += arr[i];
+            
+            if(sum==0){
+                res++;
+            }
+            
+            if(hm.containsKey(sum)){
+                res += hm.get(sum);
+                hm.put(sum, hm.get(sum)+1);
+            }
+            else
+                hm.put(sum,1);
+        }
+        
+        return res;
+    }
+}
