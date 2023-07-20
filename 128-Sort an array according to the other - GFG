@@ -1,0 +1,58 @@
+//Expected Time Complexity: O(N * Log(N)).
+//Expected Auxiliary Space: O(N).
+
+class Solution{
+    // A1[] : the input array-1
+    // N : size of the array A1[]
+    // A2[] : the input array-2
+    // M : size of the array A2[]
+    
+    //Function to sort an array according to the other array.
+    public static int[] sortA1ByA2(int A1[], int N, int A2[], int M)
+    {
+        //Your code here
+        //result array
+        int[] res = new int[N];
+        //counter to track till what index item present in result array
+        int counter = 0;
+
+        HashMap<Integer, Integer> hm = new HashMap<Integer, Integer>();
+        HashSet<Integer> hs = new HashSet<Integer>();
+
+        //frequency map
+        for(int i=0; i<N; i++){
+            hm.put(A1[i], hm.getOrDefault(A1[i], 0)+1);
+        }
+
+        //hash set of A2array
+        for(int item : A2){
+            hs.add(item);
+        }
+
+        //sorting the array
+        Arrays.sort(A1);
+
+        //adding eement into result arry according to A2 array. 1st we are check if element of A2 present in the frequency map
+        for(int item : A2){
+            if(hm.containsKey(item)){
+                //if element present in the freqquency map then we are adding item to result array its frequency times
+                while(hm.get(item)>0){
+                    res[counter] =item;
+                    hm.put(item, hm.get(item)-1);
+                    counter++;
+                }
+                
+            }
+        }
+
+        //adding the A1 element which is not present in A2 from lowest to highest
+        for(int i = 0; i<N; i++){
+            if(!hs.contains(A1[i])){
+                res[counter] = A1[i];
+                counter++;
+            }
+        }
+            
+        return res;    
+    }
+}
